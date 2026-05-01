@@ -60,7 +60,8 @@ export function ProductCardHome({ product, category, features }: Props) {
   const successOverlayRef = useRef<HTMLDivElement>(null);
 
   const total = product.price * qty;
-  const noteLines = splitLines(product.note || product.highlight);
+  const noteLines = splitLines(product.note);
+  const highlightLines = splitLines(product.highlight);
 
   function openBuyModal() {
     setQty(1);
@@ -235,6 +236,14 @@ export function ProductCardHome({ product, category, features }: Props) {
               </div>
 
               <p className="mt-3 text-[22px] font-extrabold text-[#e09000]">{toCurrency(product.price)}</p>
+
+              {highlightLines.length > 0 && (
+                <div className="mt-4 space-y-1 rounded-lg border border-[#e3e9f4] bg-[#f8fbff] p-3 text-[12px] leading-5 text-[#3a4d72]">
+                  {highlightLines.map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
 
               {noteLines.length > 0 && (
                 <div className="mt-4 space-y-1 border-t border-[#edf2f8] pt-4 text-[13px] leading-6 text-[#3a4d72]">

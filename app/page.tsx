@@ -32,13 +32,14 @@ export default async function HomePage() {
 
   const hotline = contacts.find((item) => item.phone)?.phone ?? null;
   const telegram = contacts.find((item) => item.telegram)?.telegram ?? null;
+  const sortedCatalog = [...catalog].sort((a, b) => b.products.length - a.products.length);
 
   return (
     <main id="danh-muc" className="bg-[#f3f5f9] py-5 md:py-8">
       <section className="site-container grid grid-cols-1 gap-4 lg:grid-cols-12">
         <div className="order-2 lg:order-1 lg:col-span-9">
           <div className="space-y-7">
-            {catalog.map((category) => (
+            {sortedCatalog.map((category) => (
               <section key={category.id} id={`danh-muc-${category.slug}`} className="scroll-mt-[220px]">
                 <div className="mb-4 flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#31498f] to-[#204a8f] px-4 py-3 shadow-[0_6px_18px_-12px_rgba(15,35,85,0.8)]">
                   {category.imageUrl ? <Image src={category.imageUrl} alt={category.name} width={30} height={30} unoptimized className="h-[30px] w-[30px] rounded-lg object-cover" /> : null}

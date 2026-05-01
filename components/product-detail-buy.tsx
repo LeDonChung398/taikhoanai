@@ -11,6 +11,10 @@ function toCurrency(amount: number) {
   return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND", maximumFractionDigits: 0 }).format(amount);
 }
 
+function splitLines(text?: string) {
+  return (text ?? "").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+}
+
 function BackIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
@@ -45,6 +49,7 @@ export function ProductDetailBuy({ product }: Props) {
   const successOverlayRef = useRef<HTMLDivElement>(null);
 
   const total = product.price * qty;
+  const highlightLines = splitLines(product.highlight);
 
   function openModal() {
     setQty(1);
@@ -126,7 +131,7 @@ export function ProductDetailBuy({ product }: Props) {
           className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-[#d7e0ef] bg-white px-4 text-[14px] font-semibold text-[#3a4d72] transition hover:bg-[#f5f8ff]"
         >
           <BackIcon />
-          Quay láº¡i
+          Quay lại
         </button>
         <button
           type="button"
@@ -164,6 +169,14 @@ export function ProductDetailBuy({ product }: Props) {
                 ThĂ´ng tin mua hĂ ng
               </p>
               <p className="mb-4 text-center text-[13px] text-[#5f7398]">{product.name}</p>
+
+              {highlightLines.length > 0 && (
+                <div className="mb-4 space-y-1 rounded-lg border border-[#e3e9f4] bg-[#f8fbff] p-3 text-[12px] leading-5 text-[#3a4d72]">
+                  {highlightLines.map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
 
               {/* Quantity */}
               <div className="text-[13px] text-[#3a4d72]">Sá»‘ lÆ°á»£ng:</div>

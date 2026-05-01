@@ -14,11 +14,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const product = await getPublicProductBySlug(slug);
     return {
       title: product.name,
-      description: product.highlight || product.note || `Mua ${product.name} uy tín tại TaiKhoanAI.`,
+      description: product.note || product.highlight || `Mua ${product.name} uy tín tại TaiKhoanAI.`,
       alternates: { canonical: `/products/${slug}` },
       openGraph: {
         title: product.name,
-        description: product.highlight || product.note || undefined,
+        description: product.note || product.highlight || undefined,
         type: "website",
         url: `/products/${slug}`,
       },
@@ -46,7 +46,8 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
-  const noteLines = splitLines(product.highlight || product.note);
+  const noteLines = splitLines(product.note);
+  const highlightLines = splitLines(product.highlight);
 
   return (
     <main className="bg-[#f3f5f9] py-6 md:py-10">
@@ -99,7 +100,7 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
 
             {/* Description card */}
-            {noteLines.length > 0 && (
+            {(noteLines.length > 0 || highlightLines.length > 0) && (
               <div className="rounded-2xl border border-[#dbe2ef] bg-white p-5 md:p-6">
                 <h2 className="mb-3 text-[15px] font-bold text-[#1d2e54]">Mô tả sản phẩm</h2>
                 <div className="space-y-2 text-[13px] leading-7 text-[#3a4d72]">
@@ -107,6 +108,17 @@ export default async function ProductDetailPage({ params }: Props) {
                     <p key={i}>{line}</p>
                   ))}
                 </div>
+
+                {highlightLines.length > 0 && (
+                  <div className="mt-4 rounded-xl border border-[#e3e9f4] bg-[#f8fbff] p-4">
+                    <p className="mb-2 text-[13px] font-bold text-[#1d2e54]">Nổi bật</p>
+                    <div className="space-y-1 text-[13px] leading-6 text-[#3a4d72]">
+                      {highlightLines.map((line, i) => (
+                        <p key={i}>{line}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
