@@ -1,0 +1,12 @@
+﻿<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tgBg" x1="16" y1="20" x2="240" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#37AEE2" />
+      <stop offset="1" stop-color="#1E96D2" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="40" fill="url(#tgBg)" />
+  <circle cx="128" cy="114" r="68" fill="white" fill-opacity="0.22" />
+  <path d="M75 119.5L178.2 81.2C182.2 79.8 185.9 82.8 184.8 87L168.1 169.7C167.2 173.3 162.8 174.7 159.9 172.1L129.2 145.1L113.7 160.4C111.4 162.7 107.4 161.6 106.7 158.3L101.9 135.9L75.4 127.1C71.7 125.9 71.5 120.8 75 119.5Z" fill="white" />
+  <text x="128" y="212" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="white">TELEGRAM</text>
+</svg>

@@ -1,0 +1,12 @@
+/node_modules
+/.next
+/out
+/build
+/be
+/backend/.env
+/backend/.env.*
+/backend/dist
+/backend/node_modules
+*.log
+.env*
+.DS_Store

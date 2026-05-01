@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '55,75p' D:/mmo/taikhoanai/app/checkout/page.tsx)",
+      "Bash(sed -n '15,38p' D:/mmo/taikhoanai/app/account/page.tsx)"
+    ]
+  }
+}
